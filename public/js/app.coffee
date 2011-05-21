@@ -9,7 +9,11 @@ class Bar extends Backbone.Events
     @bind "bar", (msg)->
       alert msg
 
-  
+class Baz extends Backbone.Model
+  constructor: () ->
+    @bind "baz", (msg)->
+      alert msg
+
 jQuery -> 
   ($ 'a#foo').bind "click",  ->
     foo = new Foo
@@ -18,3 +22,7 @@ jQuery ->
   ($ 'a#bar').bind "click",  ->
     bar = new Bar
     bar.trigger "bar", "Will not work"
+
+  ($ 'a#baz').bind "click",  ->
+    bar = new Baz
+    bar.trigger "baz", "Working"

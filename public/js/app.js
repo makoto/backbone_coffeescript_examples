@@ -1,5 +1,5 @@
 (function() {
-  var Bar, Foo;
+  var Bar, Baz, Foo;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -26,16 +26,30 @@
     }
     return Bar;
   })();
+  Baz = (function() {
+    __extends(Baz, Backbone.Model);
+    function Baz() {
+      this.bind("baz", function(msg) {
+        return alert(msg);
+      });
+    }
+    return Baz;
+  })();
   jQuery(function() {
     ($('a#foo')).bind("click", function() {
       var foo;
       foo = new Foo;
       return foo.trigger("foo", "Working");
     });
-    return ($('a#bar')).bind("click", function() {
+    ($('a#bar')).bind("click", function() {
       var bar;
       bar = new Bar;
       return bar.trigger("bar", "Will not work");
+    });
+    return ($('a#baz')).bind("click", function() {
+      var bar;
+      bar = new Baz;
+      return bar.trigger("baz", "Working");
     });
   });
 }).call(this);
